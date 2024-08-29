@@ -13,7 +13,8 @@
     "test": "npm run compile && npm run unit",
     "prebuild": "rm -rf dist",
     "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2022 --outfile=dist/index.js",
-    "postbuild": "cd dist && zip -r index.zip index.js* parquet_wasm_bg.wasm*"
+    "wasmBuild": "cp node_modules/parquet-wasm/node/parquet_wasm_bg.wasm dist/parquet_wasm_bg.wasm",
+    "postbuild": "npm run wasmBuild && cd dist && zip -r index.zip index.js* parquet_wasm*"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.637.0",

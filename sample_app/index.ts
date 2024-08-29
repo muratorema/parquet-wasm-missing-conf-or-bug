@@ -1,5 +1,5 @@
 import * as arrow from "apache-arrow";
-import initWasm, {
+import {
   Compression,
   readParquet,
   Table,
@@ -9,8 +9,6 @@ import initWasm, {
 
 async function test() {
 
-    // Instantiate the WebAssembly context
-    await initWasm();
 
     // Create Arrow Table in JS
     const LENGTH = 2000;
@@ -43,6 +41,7 @@ async function test() {
 
     // table is now an Arrow table in JS memory
     const table = arrow.tableFromIPC(arrowWasmTable.intoIPCStream());
+    console.log("hello papa");
     console.log(table.schema.toString());
 
 }
